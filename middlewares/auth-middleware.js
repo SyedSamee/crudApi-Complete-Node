@@ -7,10 +7,11 @@ var checkUserAuth = async(req,res,next)=>{
 
    try {
     if(auth){
-        const isVerified =  Jwt.verify(auth,process.env.jwt_SECRET_KEY);
+        const {userId} =  Jwt.verify(auth,process.env.jwt_SECRET_KEY);
+        console.log(userId);
  
-        if(isVerified.iat.toFixed){
-    
+        if(userId){
+          
             next();
         }
     }
